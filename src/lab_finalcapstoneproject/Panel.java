@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 package lab_finalcapstoneproject;
 
 import java.awt.*;
@@ -17,10 +15,8 @@ public class Panel {
     w.setBounds(100, 100, 640, 480);
     w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     Panel panel = new Panel();
-    //panel.setBackground(Color.WHITE);
     Container c = w.getContentPane();
-    c.add(panel);
+    w.add(c);
     w.setVisible(true);
   }
 }
->>>>>>> parent of eae6fa6... this is bad
