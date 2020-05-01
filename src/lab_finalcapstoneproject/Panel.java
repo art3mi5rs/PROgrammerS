@@ -9,8 +9,7 @@ import javax.swing.JFrame;
 
 public class Panel {
   
-<<<<<<< HEAD
-=======
+
   public static void main(String[] args)
   {
     JFrame w = new JFrame("Panel");
@@ -19,8 +18,7 @@ public class Panel {
     Panel panel = new Panel();
     //panel.setBackground(Color.WHITE);
     Container c = w.getContentPane();
-    c.add(panel);
+    w.add(c);
     w.setVisible(true);
   }
->>>>>>> cf6a1187684b1a035b5bd15184ccef3db12632d0
 }
