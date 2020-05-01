@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package lab_finalcapstoneproject;
 
 import java.awt.*;
@@ -9,7 +9,6 @@ import javax.swing.*;
 import javax.swing.JFrame;
 
 public class Panel {
-  
 
   public static void main(String[] args)
   {
@@ -17,11 +16,8 @@ public class Panel {
     w.setBounds(100, 100, 640, 480);
     w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     Panel panel = new Panel();
-    //panel.setBackground(Color.WHITE);
     Container c = w.getContentPane();
     w.add(c);
     w.setVisible(true);
   }
 }
-=======
->>>>>>> 82d27a19ecee83ebeba45ae7112222a45faa0747
