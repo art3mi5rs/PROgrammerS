@@ -11,15 +11,13 @@ public class Panel {
   
   public static void main(String[] args)
   {
-    JFrame w = new JFrame("Simple Window");
+    JFrame w = new JFrame("Panel");
     w.setBounds(100, 100, 640, 480);
     w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     Panel panel = new Panel();
-    w.addKeyListener(panel);
-    w.add(panel);
-    w.setResizable(true);
+    //panel.setBackground(Color.WHITE);
+    Container c = w.getContentPane();
+    c.add(panel);
     w.setVisible(true);
-    
-    panel.run();
   }
 }
