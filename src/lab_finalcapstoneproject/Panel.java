@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package lab_finalcapstoneproject;
 
 import java.awt.*;
@@ -22,3 +23,5 @@ public class Panel {
     w.setVisible(true);
   }
 }
+=======
+>>>>>>> 82d27a19ecee83ebeba45ae7112222a45faa0747
