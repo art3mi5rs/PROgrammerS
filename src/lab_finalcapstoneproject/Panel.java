@@ -1,5 +1,5 @@
 package lab_finalcapstoneproject;
 
-public class Character {
+public class Panel {
 
 }
