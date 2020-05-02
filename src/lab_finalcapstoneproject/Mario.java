@@ -1,4 +1,4 @@
-
+package lab_finalcapstoneproject;
 public class Mario extends MovingImage {
 	// FIELDS
 	private double velX, velY;
