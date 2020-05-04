@@ -13,7 +13,7 @@ public class Panel {
     w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     Panel panel = new Panel();
     Container c = w.getContentPane();
-    //w.add(c);
+    w.add(c);
     w.setVisible(true);
   }
 }
