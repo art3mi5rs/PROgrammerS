@@ -1,3 +1,8 @@
+//Name: Shachaf Smith, Mana Nagampalli
+//Date:05/03/2020
+//Ver:1
+//Notes: The main class which has all the components to print the backgrounds and run the project along with any additional 
+//features that we may add in the future
 package lab_finalcapstoneproject;
 import java.awt.*;
 import javax.swing.JFrame;
