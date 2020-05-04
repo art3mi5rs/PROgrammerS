@@ -1,6 +1,4 @@
-
 package lab_finalcapstoneproject;
-
 import java.awt.*;
 import javax.swing.JFrame;
 
