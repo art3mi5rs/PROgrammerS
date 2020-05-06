@@ -5,5 +5,13 @@
 //obstacle in game
 
 public class Obstacle extends Sprite {
+  // need to set original positions
 
+  // This method will cause the obstacle move left across the screen. Once it goes
+  // off of the window, it will come back to the beginning.
+  public void moveLeft() {
+
+  }
+  
+  
 }

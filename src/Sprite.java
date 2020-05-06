@@ -4,5 +4,8 @@
 //themselves and collision detection
 
 public abstract class Sprite {
-
+  //sprite should be able to paint the objects of its subclasses.
+  
+  //sprite should be able to...
+  
 }
