@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 public class Panel {
   // panel needs to also paint a background
   
-  Player player = new Player();
-  Obstacle obstacle = new Obstacle();
+  Player player = new Player(0, 0);
+  Obstacle obstacle = new Obstacle(0, 0);
 
   public static void main(String[] args)
   {
