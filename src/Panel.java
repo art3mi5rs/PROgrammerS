@@ -17,7 +17,7 @@ public class Panel {
     JFrame w = new JFrame("Panel");
     w.setBounds(100, 100, 640, 480);
     w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-   // Panel panel = new Panel();
+    Panel panel = new Panel();
     Container c = w.getContentPane();
     w.add(c);
     w.setVisible(true);
