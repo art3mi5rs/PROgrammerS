@@ -25,9 +25,17 @@
 		
 		// CONSTRUCTORS
 		
+
+
 		public Sprite(String running, int x, int y, int w, int h) {
 			this((new ImageIcon(running)).getImage(),x,y,w,h);
 		}
+		
+
+		public Sprite(String running, int x, int y, int w, int h) {
+			this((new ImageIcon(running)).getImage(),x,y,w,h);
+		}
+
 
 		public Sprite(Image img, int x, int y, int w, int h) {
 			image = img;

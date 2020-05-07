@@ -12,6 +12,11 @@ public class Panel {
   Player player = new Player(30, 50);
   Obstacle obstacle = new Obstacle(40, 50);
 
+
+
+  Player player = new Player(0, 0);
+  Obstacle obstacle = new Obstacle(0, 0);
+
   public static void main(String[] args)
   {
     JFrame w = new JFrame("Panel");
