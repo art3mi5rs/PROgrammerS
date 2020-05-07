@@ -24,6 +24,16 @@ public class Panel extends JPanel implements KeyListener {
 		setBackground(Color.ORANGE);
 	}
 
+	public void run() {
+		while (true) {
+			if (upKeyPressed) {
+				mahaf.jump();
+			}
+			repaint();
+
+		}
+	}
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g); // Call JPanel's paintComponent method to paint
 									// the background
@@ -45,7 +55,7 @@ public class Panel extends JPanel implements KeyListener {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		
+
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			mahaf.jump();
 			upKeyPressed = true;
@@ -53,7 +63,7 @@ public class Panel extends JPanel implements KeyListener {
 	}
 
 	public void keyReleased(KeyEvent e) {
-		 if (e.getKeyCode() == KeyEvent.VK_UP) {
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			upKeyPressed = false;
 		}
 	}
@@ -82,10 +92,11 @@ public class Panel extends JPanel implements KeyListener {
 		w.add(panel);
 		w.setResizable(true);
 		w.setVisible(true);
-
 		panel.run();
 	}
+
 }
+
 // Date:05/03/2020
 // Ver:1
 // Notes: The main class which has all the components to print the backgrounds
