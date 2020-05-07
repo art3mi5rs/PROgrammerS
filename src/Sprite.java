@@ -3,7 +3,6 @@
 //Notes: This class is the superclass of player and obstacle class and it provides the methods that lets them print
 //themselves and collision detection
 
-public abstract class Sprite {
 	import java.awt.*;
 	import java.awt.image.*;
 	import javax.swing.*;
@@ -26,10 +25,7 @@ public abstract class Sprite {
 		
 		// CONSTRUCTORS
 		
-		public Sprite(String mario, int x, int y, int w, int h) {
-			this((new ImageIcon(mario)).getImage(),x,y,w,h);
-		}
-		
+
 		public Sprite(Image img, int x, int y, int w, int h) {
 			image = img;
 			this.x = x;
@@ -39,12 +35,8 @@ public abstract class Sprite {
 			isVisible = true;
 		}
 		
-		
 		// METHODS
 		
-		public void toggleVisibility() {
-			isVisible = !isVisible;
-		}
 		
 		public void moveToLocation(int x, int y) {
 			this.x = x;
@@ -69,10 +61,6 @@ public abstract class Sprite {
 			return false;
 		}
 		
-		public void resize(int w, int h) {
-			width = w;
-			height = h;
-		}
 		
 		public void draw(Graphics g, ImageObserver io) {
 			if (isVisible)
@@ -102,9 +90,4 @@ public abstract class Sprite {
 		
 		
 	}
-
-  //sprite should be able to paint the objects of its subclasses.
-  
-  //sprite should be able to...
- 
 
