@@ -12,7 +12,7 @@ public class Player extends Sprite {
 
 	// need to add action listener for 'up' or space key to jump
   // need to set original positions
-	private double y;
+	private double  y;
 	private boolean onSurface;
 	
 	// CONSTRUCTOR
