@@ -19,9 +19,9 @@ public class Panel extends JPanel implements KeyListener {
 
 	public Panel() {
 		super();
-		mahaf = new Player(40, 0);
-		virus = new Obstacle(30, 0);
-		setBackground(Color.ORANGE);
+		mahaf = new Player(40, 480);
+		virus = new Obstacle(740, 480);
+		setBackground(Color.CYAN);
 	}
 
 	public void run() {
@@ -84,7 +84,7 @@ public class Panel extends JPanel implements KeyListener {
 	// 2) Customize the JFrame by writing a class that extends it, then creating
 	// that type of object in your main method instead
 	public static void main(String[] args) {
-		JFrame w = new JFrame("Simple Window");
+		JFrame w = new JFrame("PROgrammerS");
 		w.setBounds(100, 100, 640, 480);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Panel panel = new Panel();
