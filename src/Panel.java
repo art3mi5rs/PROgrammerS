@@ -53,11 +53,7 @@ public class Panel extends JPanel implements KeyListener {
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			leftKeyPressed = false;
-		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			rightKeyPressed = false;
-		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+		 if (e.getKeyCode() == KeyEvent.VK_UP) {
 			upKeyPressed = false;
 		}
 	}
