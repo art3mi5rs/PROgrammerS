@@ -11,7 +11,7 @@ public class Obstacle extends Sprite {
   // off of the window, it will come back to the beginning.
 
 
-		private double x, y;
+		private double x;
 		
 		// CONSTRUCTOR
 		public Obstacle(int x, int y) {
@@ -23,10 +23,8 @@ public class Obstacle extends Sprite {
 		// METHODS
 		public void walk() {
 		  int dir = 10;
-			if (Math.abs(x) < 10)
+			if (Math.abs(x) < 10){
 				x -= dir;
-			else {
-			  x = 40;
 			}
 		}
 		
