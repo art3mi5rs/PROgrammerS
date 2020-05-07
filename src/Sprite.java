@@ -25,10 +25,14 @@
 		
 		// CONSTRUCTORS
 		
+<<<<<<< HEAD
 		public Sprite(String running, int x, int y, int w, int h) {
 			this((new ImageIcon(running)).getImage(),x,y,w,h);
 		}
 		
+=======
+
+>>>>>>> 3b602514bc92d805068f6a35aec2f76b0af62390
 		public Sprite(Image img, int x, int y, int w, int h) {
 			image = img;
 			this.x = x;
@@ -38,12 +42,8 @@
 			isVisible = true;
 		}
 		
-		
 		// METHODS
 		
-		public void toggleVisibility() {
-			isVisible = !isVisible;
-		}
 		
 		public void moveToLocation(int x, int y) {
 			this.x = x;
@@ -68,10 +68,6 @@
 			return false;
 		}
 		
-		public void resize(int w, int h) {
-			width = w;
-			height = h;
-		}
 		
 		public void draw(Graphics g, ImageObserver io) {
 			if (isVisible)
@@ -101,9 +97,4 @@
 		
 		
 	}
-
-  //sprite should be able to paint the objects of its subclasses.
-  
-  //sprite should be able to...
- 
 
