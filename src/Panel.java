@@ -3,11 +3,14 @@
 //Ver:1
 //Notes: The main class which has all the components to print the backgrounds and run the project along with any additional 
 //features that we may add in the future
-package lab_finalcapstoneproject;
 import java.awt.*;
 import javax.swing.JFrame;
 
 public class Panel {
+  // panel needs to also paint a background
+  
+  Player player = new Player();
+  Obstacle obstacle = new Obstacle();
 
   public static void main(String[] args)
   {
