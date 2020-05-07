@@ -25,14 +25,11 @@
 		
 		// CONSTRUCTORS
 		
-<<<<<<< HEAD
+
 		public Sprite(String running, int x, int y, int w, int h) {
 			this((new ImageIcon(running)).getImage(),x,y,w,h);
 		}
 		
-=======
-
->>>>>>> 3b602514bc92d805068f6a35aec2f76b0af62390
 		public Sprite(Image img, int x, int y, int w, int h) {
 			image = img;
 			this.x = x;
