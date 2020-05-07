@@ -11,47 +11,28 @@ public class Obstacle extends Sprite {
   // off of the window, it will come back to the beginning.
 
 
-		private double velX, velY;
-		private boolean onSurface;
+		private double x, y;
 		
 		// CONSTRUCTOR
 		public Obstacle(int x, int y) {
 			super("virus.png",x,y,40,50);
-			velX = 0;
-			velY = 0;
-			onSurface = false;
+			x = 0;
+			y = 0;
 		}
 		
 		// METHODS
-		public void walk(int dir) {
-			if (Math.abs(velX) < 10)
-				velX += dir;
-		}
-		
-		public void jump() {
-			if (onSurface) {
-				velY = -12;
-				moveByAmount(0,(int)velY);
+		public void walk() {
+		  int dir = 10;
+			if (Math.abs(x) < 10)
+				x -= dir;
+			else {
+			  x = 40;
 			}
 		}
 		
-		public void fall(Sprite platform) {
-			if (velY < 15) {
-				velY += 0.5; // Gravity
-			}
-			velX *= 0.9; // Friction
-			
-			onSurface = false;
-			
-			if ( platform.isPointInImage( getX()+getWidth()/2 , getY() + getHeight() ) ) {
-				velY = 0;
-				onSurface = true;
-			}
-			
-			moveByAmount((int)velX, (int)velY);
-	  // this method makes the player's character jump when the up/space key is
-	  // pressed. Needs to use action listener for this.
-		}
+	
+		
+		
 	}
 
   
