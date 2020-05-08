@@ -20,14 +20,14 @@ public class Player extends Sprite {
 	//Methods
 	public void jump() {
 		if (onSurface) {
-			moveByAmount(0,-50);
+			moveByAmount(0,-100);
 			onSurface = false;
 		}
 	}
 	
 	public void comeToSurface () {
 		if (!onSurface) {
-			moveByAmount(0,+50);
+			moveByAmount(0,+100);
 			onSurface = true;
 		}
 	}

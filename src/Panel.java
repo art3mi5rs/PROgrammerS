@@ -31,9 +31,14 @@ public class Panel extends JPanel implements KeyListener {
 	public Panel() {
 		super();
 		upKeyPressed = false;
+
 		runsToSkip = 0xFFB;
 		cloudsRunsToSkip = 0xFFFF;
 		// collision = false;
+
+		virusRunsToSkip = 0xFBB;
+	//	collision = false;
+		
 
 		mahaf = new Player(40, 480);
 		virus = new Obstacle(740, 480);
