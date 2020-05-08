@@ -10,6 +10,7 @@ import java.awt.*;
 import javax.swing.JFrame;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
@@ -22,11 +23,12 @@ public class Panel extends JPanel implements KeyListener {
 	private Obstacle virus;
 	private Clouds cloud;
 	private Clouds cloud1;
+  private Rectangle player;
 
 	private boolean upKeyPressed;
 	private int runsToSkip;
 	private int cloudsRunsToSkip;
-	// private boolean collision;
+	private boolean collision;
 
 	public Panel() {
 		super();
@@ -34,11 +36,7 @@ public class Panel extends JPanel implements KeyListener {
 
 		runsToSkip = 0xFFB;
 		cloudsRunsToSkip = 0xFFFF;
-		// collision = false;
-
-		virusRunsToSkip = 0xFBB;
-	//	collision = false;
-		
+		collision = false;
 
 		mahaf = new Player(40, 480);
 		virus = new Obstacle(740, 480);
@@ -101,6 +99,15 @@ public class Panel extends JPanel implements KeyListener {
 		cloud1.draw(g, this);
 
 		g2.setTransform(at);
+		
+		if (collision) {
+      g.setColor(Color.BLACK);
+      g.setFont(new Font("SansSerif", Font.BOLD, 30));
+      FontMetrics fm = g.getFontMetrics();
+      String s = "collision!";
+      g.drawString(s, width / 2 - fm.stringWidth(s) / 2, height / 2);
+    }
+
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -126,6 +133,24 @@ public class Panel extends JPanel implements KeyListener {
 			mahaf = new Player(380, 0);
 	}
 
+	public void checkCollision() {
+    BufferedImage pic = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+    collision = false;
+    // Look at every pixel coordinate in the rectangle
+    for (int i = player.x; i < player.x + player.width; i++) {
+      for (int j = player.y; j < player.y + player.height; j++) {
+        // If that pixel is not white
+        if (pic.getRGB(i, j) != Color.cyan.getRGB()) {
+          // There was a collision!
+          collision = true;
+        }
+      }
+    }
+  }
+	
+	
+	
+	
 	public static void main(String[] args) {
 		JFrame w = new JFrame("PROgrammerS");
 		w.setBounds(100, 100, 640, 480);

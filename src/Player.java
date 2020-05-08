@@ -6,9 +6,6 @@
 
 public class Player extends Sprite {
  
-	
-
-
 	private boolean onSurface;
 	
 	//Constructor
