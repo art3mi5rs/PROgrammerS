@@ -42,9 +42,9 @@ public class Panel extends JPanel implements KeyListener {
 		virus = new Obstacle(740, 480);
 		cloud = new Clouds(400, 20);
 		cloud1= new Clouds(200, 20);
-		grass= new Ground (0,740);
-		mahaf = new Player(340, 300);
-		virus = new Obstacle(740, 300);
+		grass= new Ground (0,520);
+		mahaf = new Player(230, 480);
+		virus = new Obstacle(780,480);
 		setBackground(Color.CYAN);
 	}
 
