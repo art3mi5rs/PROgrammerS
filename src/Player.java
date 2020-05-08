@@ -10,17 +10,13 @@ public class Player extends Sprite {
  
 	
 
-	// need to add action listener for 'up' or space key to jump
-  // need to set original positions
-	private double  y;
+
 	private boolean onSurface;
 	
 	// CONSTRUCTOR
 	public Player(int x, int y) {
 		super("running.png",x,y,40,50);
-		x = 0;
-		y = 0;
-		onSurface = false;
+		onSurface = true;
 	}
 	
 	// METHODS
@@ -28,8 +24,15 @@ public class Player extends Sprite {
 	
 	public void jump() {
 		if (onSurface) {
-			y = -12;
-			moveByAmount(0,(int)y);
+			moveByAmount(0,-50);
+			onSurface = false;
+		}
+	}
+	
+	public void comeToSurface () {
+		if (!onSurface) {
+			moveByAmount(0,+50);
+			onSurface = true;
 		}
 	}
 }

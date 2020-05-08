@@ -11,27 +11,30 @@ public class Obstacle extends Sprite {
   // off of the window, it will come back to the beginning.
 
 
-		private double x;
+		private int orgX;
+		private int orgY;
+		private double curX;
 		
 		// CONSTRUCTOR
 		public Obstacle(int x, int y) {
 			super("virus.png",x,y,40,50);
-			x = 0;
-			y = 0;
+			orgX = x;
+			curX = x;
+			orgY = y;
+		
+			
 		}
 		
 		// METHODS
-		public void walk() {
-		  int dir = 10;
-			if (Math.abs(x) < 10){
-				x -= dir;
+		public void circularleftShift() {
+			if (curX >= 0) {
+				moveByAmount(-1, 0);
+				curX -= 1;
+			}
+			else{
+				moveToLocation(orgX, orgY);
+				curX = orgX;
 			}
 		}
-		
-	
-		
-		
-	}
-
-  
+}
  

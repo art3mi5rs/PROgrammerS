@@ -16,9 +16,13 @@ public class Panel extends JPanel implements KeyListener {
 	private Obstacle virus;
 
 	private boolean upKeyPressed;
+	private int virusRunsToSkip;
 
 	public Panel() {
 		super();
+		upKeyPressed = false;
+		virusRunsToSkip = 0xFFFF;
+		
 		mahaf = new Player(40, 480);
 		virus = new Obstacle(740, 480);
 		setBackground(Color.CYAN);
@@ -26,12 +30,25 @@ public class Panel extends JPanel implements KeyListener {
 
 	public void run() {
 		while (true) {
+			
+			if (virusRunsToSkip == 0)
+			{
+				virus.circularleftShift();
+				virusRunsToSkip = 0xFFFF;
+			}
+			else {
+				virusRunsToSkip --;
+			}
 			if (upKeyPressed) {
 				mahaf.jump();
+				
 			}
+			else {
+				mahaf.comeToSurface();
+			}	
 			repaint();
-
 		}
+		
 	}
 
 	public void paintComponent(Graphics g) {
@@ -57,7 +74,6 @@ public class Panel extends JPanel implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			mahaf.jump();
 			upKeyPressed = true;
 		}
 	}
@@ -69,7 +85,6 @@ public class Panel extends JPanel implements KeyListener {
 	}
 
 	public void keyTyped(KeyEvent e) {
-
 	}
 
 	public void checkmahaf() {
