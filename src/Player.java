@@ -1,5 +1,3 @@
-import java.awt.Image;
-
 //Name: Shachaf Smith, Mana Nagampalli
 //Date:05/03/2020
 //Ver:1
@@ -13,15 +11,13 @@ public class Player extends Sprite {
 
 	private boolean onSurface;
 	
-	// CONSTRUCTOR
+	//Constructor
 	public Player(int x, int y) {
 		super("running.png",x,y,40,50);
 		onSurface = true;
 	}
 	
-	// METHODS
-	
-	
+	//Methods
 	public void jump() {
 		if (onSurface) {
 			moveByAmount(0,-50);

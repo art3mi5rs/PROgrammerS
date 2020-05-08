@@ -8,25 +8,19 @@
 	import javax.swing.*;
 
 	/*
-	 * Represents a moving, appearing/disappearing image.
-	 *
 	 * by: Shelby
 	 * on: 5/3/13
 	 */
 	 
 	public class Sprite {
 		
-		// FIELDS
-		
+		//Fields
 		private int x, y;
 		private int width, height;
 		private Image image;
 		private boolean isVisible;
 		
-		// CONSTRUCTORS
-		
-
-
+		//Constructors
 		public Sprite (String image, int x, int y, int w, int h) {
 			this((new ImageIcon(image)).getImage(),x,y,w,h);
 		}
@@ -41,9 +35,7 @@
 			isVisible = true;
 		}
 		
-		// METHODS
-		
-		
+		//Methods		
 		public void moveToLocation(int x, int y) {
 			this.x = x;
 			this.y = y;
@@ -92,8 +84,6 @@
 		public boolean isVisible() {
 			return isVisible;
 		}
-		
-		
 		
 	}
 
