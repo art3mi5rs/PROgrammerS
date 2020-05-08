@@ -29,7 +29,7 @@ public class Panel extends JPanel implements KeyListener {
 	public Panel() {
 		super();
 		upKeyPressed = false;
-		virusRunsToSkip = 0xFFB;
+		virusRunsToSkip = 0xFBB;
 	//	collision = false;
 		
 
