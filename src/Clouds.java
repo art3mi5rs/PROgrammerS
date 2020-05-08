@@ -7,7 +7,7 @@
 public class Clouds extends Sprite {
   // need to set original positions
 
-  // This method will cause the clouds move left across the screen. Once it goes
+  // This method will cause the clouds move right across the screen. Once it goes
   // off of the window, it will come back to the beginning.
 
 
@@ -17,7 +17,7 @@ public class Clouds extends Sprite {
 		
 		// CONSTRUCTOR
 		public Clouds(int x, int y) {
-			super("cloud.png",x,y,40,50);
+			super("cloud.png",x,y,200,50);
 			orgX = x;
 			curX = x;
 			orgY = y;
@@ -26,9 +26,9 @@ public class Clouds extends Sprite {
 		}
 		
 		// METHODS
-		public void circularleftShift() {
+		public void circularLeftShift() {
 			if (curX >= 0) {
-				moveByAmount(-1, 0);
+				moveByAmount(1, 0);
 				curX -= 1;
 			}
 			else{

@@ -1,3 +1,4 @@
+
 //Name: Shachaf Smith, Mana Nagampalli
 // Date:05/03/2020
 // Ver:1
@@ -19,24 +20,25 @@ public class Panel extends JPanel implements KeyListener {
 
 	private Player mahaf;
 	private Obstacle virus;
-	//private Clouds cloud;
-	//private Clouds cloud1;
+	private Clouds cloud;
+	private Clouds cloud1;
 
 	private boolean upKeyPressed;
-	private int virusRunsToSkip;
-//	private boolean collision;
+	private int runsToSkip;
+	private int cloudsRunsToSkip;
+	// private boolean collision;
 
 	public Panel() {
 		super();
 		upKeyPressed = false;
-		virusRunsToSkip = 0xFFB;
-	//	collision = false;
-		
+		runsToSkip = 0xFFB;
+		cloudsRunsToSkip = 0xFFFF;
+		// collision = false;
 
 		mahaf = new Player(40, 480);
 		virus = new Obstacle(740, 480);
-		//cloud = new Clouds(0,0);
-		//cloud1= new Clouds(70,0);
+		cloud = new Clouds(400, 20);
+		cloud1 = new Clouds(200, 20);
 
 		mahaf = new Player(340, 300);
 		virus = new Obstacle(740, 300);
@@ -44,32 +46,34 @@ public class Panel extends JPanel implements KeyListener {
 	}
 
 	public void run() {
+		int cloudTrigger=0;
 		while (true) {
 			
-			if (virusRunsToSkip == 0)
-			{
+			if (runsToSkip == 0) {
 				virus.circularleftShift();
-
-				//cloud.circularleftShift();
-				//cloud1.circularleftShift();
-				virusRunsToSkip = 0xFFFF;
-
-				virusRunsToSkip = 0xFFB;
-
+				runsToSkip = 0xFFB;
 			}
-			else {
-				virusRunsToSkip --;
+			if(cloudsRunsToSkip==0){
+				cloud.circularLeftShift();
+				cloud1.circularLeftShift();
+				
+				cloudsRunsToSkip = 0xFFFF;
 			}
+
+			 
+				runsToSkip--;
+				cloudsRunsToSkip--;
+			
+
 			if (upKeyPressed) {
 				mahaf.jump();
-				
-			}
-			else {
+
+			} else {
 				mahaf.comeToSurface();
-			}	
+			}
 			repaint();
 		}
-		
+
 	}
 
 	public void paintComponent(Graphics g) {
@@ -88,6 +92,8 @@ public class Panel extends JPanel implements KeyListener {
 
 		virus.draw(g, this);
 		mahaf.draw(g, this);
+		cloud.draw(g, this);
+		cloud1.draw(g, this);
 
 		g2.setTransform(at);
 	}
@@ -122,11 +128,9 @@ public class Panel extends JPanel implements KeyListener {
 		Panel panel = new Panel();
 		w.addKeyListener(panel);
 		w.add(panel);
-    	w.setResizable(false);
-    	w.setVisible(true);
-    	panel.run();
-  }
+		w.setResizable(false);
+		w.setVisible(true);
+		panel.run();
+	}
 
 }
-
-
