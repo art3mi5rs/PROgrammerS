@@ -22,10 +22,12 @@ public class Panel extends JPanel implements KeyListener {
 	private Obstacle virus;
 	private Clouds cloud;
 	private Clouds cloud1;
+	private Ground grass;
 
 	private boolean upKeyPressed;
 	private int runsToSkip;
 	private int cloudsRunsToSkip;
+	private int groundRunsToSkip;
 	// private boolean collision;
 
 	public Panel() {
@@ -34,41 +36,40 @@ public class Panel extends JPanel implements KeyListener {
 
 		runsToSkip = 0xFFB;
 		cloudsRunsToSkip = 0xFFFF;
-		// collision = false;
-
-		virusRunsToSkip = 0xFBB;
-	//	collision = false;
-		
+		groundRunsToSkip= 0xFFFF;
 
 		mahaf = new Player(40, 480);
 		virus = new Obstacle(740, 480);
 		cloud = new Clouds(400, 20);
-		cloud1 = new Clouds(200, 20);
-
+		cloud1= new Clouds(200, 20);
+		grass= new Ground (0,740);
 		mahaf = new Player(340, 300);
 		virus = new Obstacle(740, 300);
 		setBackground(Color.CYAN);
 	}
 
 	public void run() {
-		int cloudTrigger=0;
 		while (true) {
-			
+
 			if (runsToSkip == 0) {
 				virus.circularleftShift();
 				runsToSkip = 0xFFB;
 			}
-			if(cloudsRunsToSkip==0){
+			if (cloudsRunsToSkip == 0) {
 				cloud.circularLeftShift();
 				cloud1.circularLeftShift();
-				
+
 				cloudsRunsToSkip = 0xFFFF;
 			}
 
-			 
-				runsToSkip--;
-				cloudsRunsToSkip--;
-			
+			if (runsToSkip == 0) {
+				grass.circularLeftShift();
+				groundRunsToSkip = 0xFFFF;
+			}
+
+			runsToSkip--;
+			cloudsRunsToSkip--;
+			groundRunsToSkip--;
 
 			if (upKeyPressed) {
 				mahaf.jump();
@@ -99,6 +100,7 @@ public class Panel extends JPanel implements KeyListener {
 		mahaf.draw(g, this);
 		cloud.draw(g, this);
 		cloud1.draw(g, this);
+		grass.draw(g, this);
 
 		g2.setTransform(at);
 	}
