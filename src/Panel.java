@@ -17,14 +17,16 @@ public class Panel extends JPanel implements KeyListener {
 
 	private boolean upKeyPressed;
 	private int virusRunsToSkip;
+	private boolean collision;
 
 	public Panel() {
 		super();
 		upKeyPressed = false;
-		virusRunsToSkip = 0xFFFF;
+		virusRunsToSkip = 0xFFB;
+		collision = false;
 		
-		mahaf = new Player(40, 480);
-		virus = new Obstacle(740, 480);
+		mahaf = new Player(340, 300);
+		virus = new Obstacle(740, 300);
 		setBackground(Color.CYAN);
 	}
 
@@ -34,7 +36,7 @@ public class Panel extends JPanel implements KeyListener {
 			if (virusRunsToSkip == 0)
 			{
 				virus.circularleftShift();
-				virusRunsToSkip = 0xFFFF;
+				virusRunsToSkip = 0xFFB;
 			}
 			else {
 				virusRunsToSkip --;
@@ -105,7 +107,7 @@ public class Panel extends JPanel implements KeyListener {
 		Panel panel = new Panel();
 		w.addKeyListener(panel);
 		w.add(panel);
-		w.setResizable(true);
+    w.setResizable(false);
 		w.setVisible(true);
 		panel.run();
 	}
