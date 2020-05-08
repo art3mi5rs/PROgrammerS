@@ -14,6 +14,8 @@ public class Panel extends JPanel implements KeyListener {
 
 	private Player mahaf;
 	private Obstacle virus;
+	private Clouds cloud;
+	private Clouds cloud1;
 
 	private boolean upKeyPressed;
 	private int virusRunsToSkip;
@@ -25,6 +27,8 @@ public class Panel extends JPanel implements KeyListener {
 		
 		mahaf = new Player(40, 480);
 		virus = new Obstacle(740, 480);
+		cloud = new Clouds(0,0);
+		//cloud1= new Clouds(70,0);
 		setBackground(Color.CYAN);
 	}
 
@@ -34,6 +38,8 @@ public class Panel extends JPanel implements KeyListener {
 			if (virusRunsToSkip == 0)
 			{
 				virus.circularleftShift();
+				cloud.circularleftShift();
+				//cloud1.circularleftShift();
 				virusRunsToSkip = 0xFFFF;
 			}
 			else {
