@@ -23,7 +23,6 @@ public class Panel extends JPanel implements KeyListener {
 	private Obstacle virus;
 	private Clouds cloud;
 	private Clouds cloud1;
-    private Rectangle player;
 	private Ground grass;
 
 	private boolean upKeyPressed;
@@ -81,6 +80,8 @@ public class Panel extends JPanel implements KeyListener {
 				mahaf.comeToSurface();
 			}
 			repaint();
+	    checkCollision();
+
 		}
 
 	}
@@ -141,18 +142,16 @@ public class Panel extends JPanel implements KeyListener {
 	}
 
 	public void checkCollision() {
-    BufferedImage pic = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-    collision = false;
-    // Look at every pixel coordinate in the rectangle
-    for (int i = player.x; i < player.x + player.width; i++) {
-      for (int j = player.y; j < player.y + player.height; j++) {
-        // If that pixel is not white
-        if (pic.getRGB(i, j) != Color.cyan.getRGB()) {
-          // There was a collision!
-          collision = true;
-        }
-      }
+    if(mahaf.getX() + mahaf.getWidth() >= virus.getX() && 
+        mahaf.getX() <= virus.getX() &&
+        mahaf.getY() + mahaf.getHeight() >= virus.getY() && 
+        mahaf.getY() <= virus.getY()) {
+      
+      collision = true;
+    } else {
+      collision = false;
     }
+      
   }
 	
 	
