@@ -12,7 +12,7 @@ public class Obstacle extends Sprite {
 		
 		//Constructor
 		public Obstacle(int x, int y) {
-			super("virus.png",x,y,40,50);
+			super("virus.png",x,y,39,39);
 			orgX = x;
 			curX = x;
 			orgY = y;
