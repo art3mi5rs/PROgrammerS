@@ -5,27 +5,27 @@
 //player in game
 
 public class Player extends Sprite {
- 
-	private boolean onSurface;
-	
-	//Constructor
-	public Player(int x, int y) {
-		super("running.png",x,y-25,80,100);
-		onSurface = true;
-	}
-	
-	//Methods
-	public void jump() {
-		if (onSurface) {
-			moveByAmount(0,-100);
-			onSurface = false;
-		}
-	}
-	
-	public void comeToSurface () {
-		if (!onSurface) {
-			moveByAmount(0,+100);
-			onSurface = true;
-		}
-	}
+
+  private boolean onSurface;
+
+  // Constructor
+  public Player(int x, int y) {
+    super("running.png", x, y - 25, 80, 100);
+    onSurface = true;
+  }
+
+  // Methods
+  public void jump() {
+    if (onSurface) {
+      moveByAmount(0, -100);
+      onSurface = false;
+    }
+  }
+
+  public void comeToSurface() {
+    if (!onSurface) {
+      moveByAmount(0, +100);
+      onSurface = true;
+    }
+  }
 }
