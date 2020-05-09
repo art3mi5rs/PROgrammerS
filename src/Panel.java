@@ -145,7 +145,14 @@ public class Panel extends JPanel implements KeyListener {
     if(mahaf.getX() + mahaf.getWidth() >= virus.getX() && 
         mahaf.getX() <= virus.getX() &&
         mahaf.getY() + mahaf.getHeight() >= virus.getY() && 
-        mahaf.getY() <= virus.getY()) {
+        mahaf.getY() <= virus.getY() 
+        
+        ||
+        
+        virus.getX() + virus.getWidth() >= mahaf.getX() && 
+        virus.getX() <= mahaf.getX() &&
+        mahaf.getY() + mahaf.getHeight() >= virus.getY() && 
+        mahaf.getY() <= virus.getY() ) {
       
       collision = true;
     } else {
