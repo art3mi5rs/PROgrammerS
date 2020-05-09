@@ -10,7 +10,7 @@ public class Player extends Sprite {
 	
 	//Constructor
 	public Player(int x, int y) {
-		super("running.png",x,y,80,100);
+		super("running.png",x,y-25,80,100);
 		onSurface = true;
 	}
 	
