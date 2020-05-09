@@ -17,7 +17,7 @@ public class Ground extends Sprite {
 		
 		// CONSTRUCTOR
 		public Ground(int x, int y) {
-			super("grass.png",x,y,780,50);
+			super("grass.png",x,y,780,200);
 			orgX = x;
 			curX = x;
 			orgY = y;
