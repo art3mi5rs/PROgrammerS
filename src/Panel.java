@@ -29,7 +29,6 @@ public class Panel extends JPanel implements KeyListener {
   private int runsToSkip;
   private int cloudsRunsToSkip;
   private boolean collision;
-  private int groundRunsToSkip;
 
   public Panel() {
     super();
@@ -38,7 +37,6 @@ public class Panel extends JPanel implements KeyListener {
     runsToSkip = 0xFFB;
     cloudsRunsToSkip = 0xFFFF;
     collision = false;
-    groundRunsToSkip = 0xFFFF;
 
     mahaf = new Player(40, 480);
     virus = new Obstacle(740, 480);
@@ -52,8 +50,8 @@ public class Panel extends JPanel implements KeyListener {
 
   public void run() {
     while (true) {
-      
-      if(collision) {
+
+      if (collision) {
         break;
       }
 
@@ -68,14 +66,8 @@ public class Panel extends JPanel implements KeyListener {
         cloudsRunsToSkip = 0xFFFF;
       }
 
-      if (runsToSkip == 0) {
-        grass.circularLeftShift();
-        groundRunsToSkip = 0xFFFF;
-      }
-
       runsToSkip--;
       cloudsRunsToSkip--;
-      groundRunsToSkip--;
 
       if (upKeyPressed) {
         mahaf.jump();
@@ -87,7 +79,6 @@ public class Panel extends JPanel implements KeyListener {
       if (collision) {
         runsToSkip++;
         cloudsRunsToSkip++;
-        groundRunsToSkip++;
       }
       repaint();
 
