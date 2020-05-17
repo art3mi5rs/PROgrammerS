@@ -28,6 +28,8 @@ public class Panel extends JPanel implements KeyListener {
   private boolean upKeyPressed;
   private int runsToSkip;
   private int cloudsRunsToSkip;
+  private int pointsToSkip;
+  private int points;
   private boolean collision;
 
   public Panel() {
@@ -36,6 +38,8 @@ public class Panel extends JPanel implements KeyListener {
 
     runsToSkip = 0xFFB;
     cloudsRunsToSkip = 0xFFFF;
+    pointsToSkip = 0xFFFFB;
+    points = 0;
     collision = false;
 
     mahaf = new Player(40, 480);
@@ -65,20 +69,26 @@ public class Panel extends JPanel implements KeyListener {
 
         cloudsRunsToSkip = 0xFFFF;
       }
+      if (pointsToSkip == 0) {
+        pointIncrement(1);
+      }
 
       runsToSkip--;
       cloudsRunsToSkip--;
+      pointsToSkip--;
 
       if (upKeyPressed) {
         mahaf.jump();
 
       } else {
         mahaf.comeToSurface();
+        pointIncrement(10); //Players receive ten points for completing a jump
       }
       checkCollision();
       if (collision) {
         runsToSkip++;
         cloudsRunsToSkip++;
+        pointsToSkip++;
       }
       repaint();
 
@@ -107,11 +117,17 @@ public class Panel extends JPanel implements KeyListener {
     grass.draw(g, this);
 
     g2.setTransform(at);
+    
+    g.setColor(Color.BLACK);
+    g.setFont(new Font("SansSerif", Font.BOLD, 12));
+    FontMetrics fm = g.getFontMetrics();
+    String p = "points: " + points;
+    g.drawString(p, width - fm.stringWidth(p) / 2, 20);
 
     if (collision) {
       g.setColor(Color.BLACK);
       g.setFont(new Font("SansSerif", Font.BOLD, 30));
-      FontMetrics fm = g.getFontMetrics();
+      fm = g.getFontMetrics();
       String s = "You caught the virus! GAME OVER";
       g.drawString(s, width / 2 - fm.stringWidth(s) / 2, height / 2);
     }
@@ -155,6 +171,11 @@ public class Panel extends JPanel implements KeyListener {
       collision = false;
     }
 
+  }
+  
+  public int pointIncrement(int n) {
+    points += n;
+    return points;
   }
 
   public static void main(String[] args) {
