@@ -7,12 +7,11 @@
 // features that we may add in the future
 
 import java.awt.*;
-import javax.swing.JFrame;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-
 import javax.swing.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Panel extends JPanel implements KeyListener {
 
@@ -24,76 +23,81 @@ public class Panel extends JPanel implements KeyListener {
   private Clouds cloud;
   private Clouds cloud1;
   private Ground grass;
+  private Timer virusTimer;
+  private Timer cloudsTimer;
+  private Timer pointsTimer;
+  private Timer jumpTimer;
 
-  private boolean upKeyPressed;
-  private int runsToSkip;
-  private int cloudsRunsToSkip;
-  private int pointsToSkip;
-  private int points;
   private boolean collision;
+  private int points;
 
   public Panel() {
     super();
-    upKeyPressed = false;
-
-    runsToSkip = 0xFFB;
-    cloudsRunsToSkip = 0xFFFF;
-    pointsToSkip = 0xFFFFB;
-    points = 0;
     collision = false;
 
     mahaf = new Player(40, 480);
     virus = new Obstacle(740, 480);
-    cloud = new Clouds(400, 20);
-    cloud1 = new Clouds(200, 20);
+    cloud = new Clouds(900, 20);
+    cloud1 = new Clouds(740, 20);
     grass = new Ground(0, 520);
     mahaf = new Player(230, 480);
     virus = new Obstacle(780, 480);
+    virusTimer = new Timer("virusTimer");
+    cloudsTimer = new Timer("cloudsTimer");
+    pointsTimer = new Timer("pointsTimer");
+    jumpTimer = new Timer("jumpTimer");
     setBackground(Color.CYAN);
+
   }
 
-  public void run() {
-    while (true) {
+  public void runWithTimer() {
+    runVirus();
+    runClouds(cloud, 55L);
+    runClouds(cloud1, 42L);
+    runPoints();
 
-      if (collision) {
-        break;
-      }
+  }
 
-      if (runsToSkip == 0) {
+  private void runVirus() {
+    TimerTask virusTask = new TimerTask() {
+      @Override
+      public void run() {
         virus.circularleftShift();
-        runsToSkip = 0xFFB;
-      }
-      if (cloudsRunsToSkip == 0) {
-        cloud.circularLeftShift();
-        cloud1.circularLeftShift();
-
-        cloudsRunsToSkip = 0xFFFF;
-      }
-      if (pointsToSkip == 0) {
-        pointIncrement(1);
+        collision = checkCollision();
+        if (collision) {
+          virusTimer.cancel();
+        }
+        repaint();
       }
 
-      runsToSkip--;
-      cloudsRunsToSkip--;
-      pointsToSkip--;
+    };
+    virusTimer.scheduleAtFixedRate(virusTask, 1000L, 10L);
+  }
 
-      if (upKeyPressed) {
-        mahaf.jump();
-
-      } else {
-        mahaf.comeToSurface();
-        pointIncrement(10); //Players receive ten points for completing a jump
+  private void runClouds(Clouds c, long l) {
+    TimerTask cloudsTask = new TimerTask() {
+      @Override
+      public void run() {
+        c.circularLeftShift();
+        repaint();
       }
-      checkCollision();
-      if (collision) {
-        runsToSkip++;
-        cloudsRunsToSkip++;
-        pointsToSkip++;
+
+    };
+    cloudsTimer.scheduleAtFixedRate(cloudsTask, 1000L, l);
+  }
+
+  private void runPoints() {
+    TimerTask virusTask = new TimerTask() {
+      @Override
+      public void run() {
+        pointIncrement(10);
+        if (collision) {
+          pointsTimer.cancel();
+        }
       }
-      repaint();
 
-    }
-
+    };
+    pointsTimer.scheduleAtFixedRate(virusTask, 1000L, 1000L);
   }
 
   public void paintComponent(Graphics g) {
@@ -117,12 +121,12 @@ public class Panel extends JPanel implements KeyListener {
     grass.draw(g, this);
 
     g2.setTransform(at);
-    
+
     g.setColor(Color.BLACK);
     g.setFont(new Font("SansSerif", Font.BOLD, 12));
     FontMetrics fm = g.getFontMetrics();
     String p = "points: " + points;
-    g.drawString(p, width - fm.stringWidth(p) / 2, 20);
+    g.drawString(p, width - fm.stringWidth(p) - 10, 20);
 
     if (collision) {
       g.setColor(Color.BLACK);
@@ -135,16 +139,25 @@ public class Panel extends JPanel implements KeyListener {
   }
 
   public void keyPressed(KeyEvent e) {
-
+    if (collision) {
+      return;
+    }
     if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE) {
-      upKeyPressed = true;
+      mahaf.jump();
+      TimerTask jumpTask = new TimerTask() {
+        @Override
+        public void run() {
+          mahaf.comeToSurface();
+          repaint();
+        }
+      };
+      jumpTimer.schedule(jumpTask, 1000L);
+
     }
   }
 
   public void keyReleased(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE) {
-      upKeyPressed = false;
-    }
+    //method needed by key listener
   }
 
   public void keyTyped(KeyEvent e) {
@@ -157,7 +170,7 @@ public class Panel extends JPanel implements KeyListener {
       mahaf = new Player(380, 0);
   }
 
-  public void checkCollision() {
+  public boolean checkCollision() {
     if (mahaf.getX() + mahaf.getWidth() >= virus.getX() && mahaf.getX() <= virus.getX()
         && mahaf.getY() + mahaf.getHeight() >= virus.getY() && mahaf.getY() <= virus.getY()
 
@@ -166,13 +179,13 @@ public class Panel extends JPanel implements KeyListener {
         virus.getX() + virus.getWidth() >= mahaf.getX() && virus.getX() <= mahaf.getX()
             && mahaf.getY() + mahaf.getHeight() >= virus.getY() && mahaf.getY() <= virus.getY()) {
 
-      collision = true;
-    } else {
-      collision = false;
+      return true;
     }
 
+    return false;
+
   }
-  
+
   public int pointIncrement(int n) {
     points += n;
     return points;
@@ -187,7 +200,7 @@ public class Panel extends JPanel implements KeyListener {
     w.add(panel);
     w.setResizable(false);
     w.setVisible(true);
-    panel.run();
+    panel.runWithTimer();
   }
 
 }

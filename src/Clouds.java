@@ -1,3 +1,5 @@
+import java.util.Random;
+
 //Name: Shachaf Smith, Mana Nagampalli
 //Date:05/03/2020
 //Ver:1
@@ -17,7 +19,7 @@ public class Clouds extends Sprite {
 		
 		// CONSTRUCTOR
 		public Clouds(int x, int y) {
-			super("cloud.png",x,y,200,50);
+			super("cloud.png", x, y, 200, 50);
 			orgX = x;
 			curX = x;
 			orgY = y;
@@ -27,8 +29,9 @@ public class Clouds extends Sprite {
 		
 		// METHODS
 		public void circularLeftShift() {
+		  Random rand = new Random();
 			if (curX >= 0) {
-				moveByAmount(1, 0);
+				moveByAmount(rand.nextInt(2) - 2, 0);
 				curX -= 1;
 			}
 			else{
