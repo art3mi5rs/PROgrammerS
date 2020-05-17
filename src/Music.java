@@ -49,6 +49,7 @@
 
 	    audioBytes = new byte[(int)soundFile.length()];
 
+	    
 	    try
 	    {
 	      numBytes = audioInputStream.read(audioBytes, 0, audioBytes.length);
