@@ -36,7 +36,7 @@ public class Player extends Sprite {
       public void run() {
         count++;
         moveByAmount(0, -1);
-        if (count >= 100) {
+        if (count >= 150) {
           jumpTimer.cancel();
           comeToSurface();
         }

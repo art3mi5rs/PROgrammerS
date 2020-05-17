@@ -22,6 +22,8 @@ public class Panel extends JPanel implements KeyListener {
   private Obstacle virus;
   private Clouds cloud;
   private Clouds cloud1;
+  private Clouds cloud2;
+  private Clouds cloud3;
   private Ground grass;
   private Timer virusTimer;
   private Timer cloudsTimer;
@@ -37,8 +39,10 @@ public class Panel extends JPanel implements KeyListener {
 
     mahaf = new Player(40, 480);
     virus = new Obstacle(740, 480);
-    cloud = new Clouds(900, 20);
-    cloud1 = new Clouds(740, 20);
+    cloud = new Clouds(740, 20);
+    cloud1 = new Clouds(900, 20);
+    cloud2 = new Clouds(1060, 80);
+    cloud3 = new Clouds(1200, 50);
     grass = new Ground(0, 520);
     mahaf = new Player(230, 480);
     virus = new Obstacle(780, 480);
@@ -55,6 +59,7 @@ public class Panel extends JPanel implements KeyListener {
     runVirus();
     runClouds(cloud, 55L);
     runClouds(cloud1, 42L);
+    runClouds(cloud2, 49L);
     runPoints();
 
   }
@@ -119,6 +124,8 @@ public class Panel extends JPanel implements KeyListener {
     mahaf.draw(g, this);
     cloud.draw(g, this);
     cloud1.draw(g, this);
+    cloud2.draw(g, this);
+    cloud3.draw(g, this);
     grass.draw(g, this);
 
     g2.setTransform(at);
@@ -164,12 +171,12 @@ public class Panel extends JPanel implements KeyListener {
 
   public boolean checkCollision() {
     if (mahaf.getX() + mahaf.getWidth() - 30 >= virus.getX() && mahaf.getX() <= virus.getX()
-        && mahaf.getY() + mahaf.getHeight() + 30 >= virus.getY() && mahaf.getY() <= virus.getY()
+        && mahaf.getY() + mahaf.getHeight() - 30 >= virus.getY() && mahaf.getY() <= virus.getY()
 
         ||
 
         virus.getX() + virus.getWidth() - 30 >= mahaf.getX() && virus.getX() <= mahaf.getX()
-            && mahaf.getY() + mahaf.getHeight() + 30 >= virus.getY() && mahaf.getY() <= virus.getY()) {
+            && mahaf.getY() + mahaf.getHeight() - 30 >= virus.getY() && mahaf.getY() <= virus.getY()) {
 
       return true;
     }
