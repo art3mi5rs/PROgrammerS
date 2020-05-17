@@ -10,18 +10,27 @@ import java.util.TimerTask;
 public class Player extends Sprite {
 
   int count;
+  private Music jump;
 
   // Constructor
   public Player(int x, int y) {
     super("running.png", x, y - 25, 80, 100);
-    int count = 0;
+    count = 0;
+    jump = new Music("jump.wav");
 
   }
 
   // Methods
   public void jump() {
     Timer jumpTimer = new Timer("jumpTimer");
-
+    Timer musicTimer = new Timer("musicTimer");
+    
+    TimerTask musicTask = new TimerTask() {
+      public void run() {
+        jump.play();
+      }
+    };
+    musicTimer.schedule(musicTask, 0L);
 
     TimerTask jumpTask = new TimerTask() {
       public void run() {
