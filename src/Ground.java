@@ -1,8 +1,8 @@
 //Name: Shachaf Smith, Mana Nagampalli
 //Date:05/03/2020
 //Ver:1
-//Notes: This class is a subclass of sprite and extends all methods in sprite and conains the additional code for 
-//obstacle in game
+//Notes: This class is a subclass of sprite and helps display the grass background 
+//on the JPanel
 
 public class Ground extends Sprite {
 
