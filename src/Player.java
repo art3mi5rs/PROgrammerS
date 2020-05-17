@@ -1,3 +1,6 @@
+import java.util.Timer;
+import java.util.TimerTask;
+
 //Name: Shachaf Smith, Mana Nagampalli
 //Date:05/03/2020
 //Ver:1
@@ -6,26 +9,47 @@
 
 public class Player extends Sprite {
 
-  private boolean onSurface;
+  int count;
 
   // Constructor
   public Player(int x, int y) {
     super("running.png", x, y - 25, 80, 100);
-    onSurface = true;
+    int count = 0;
+
   }
 
   // Methods
   public void jump() {
-    if (onSurface) {
-      moveByAmount(0, -100);
-      onSurface = false;
-    }
+    Timer jumpTimer = new Timer("jumpTimer");
+
+
+    TimerTask jumpTask = new TimerTask() {
+      public void run() {
+        count++;
+        moveByAmount(0, -1);
+        if (count >= 100) {
+          jumpTimer.cancel();
+          comeToSurface();
+        }
+      }
+    };
+    jumpTimer.scheduleAtFixedRate(jumpTask, 0L, 10L);
+
   }
 
   public void comeToSurface() {
-    if (!onSurface) {
-      moveByAmount(0, +100);
-      onSurface = true;
-    }
+    Timer downTimer = new Timer("downTimer");
+
+    TimerTask downTask = new TimerTask() {
+      public void run() {
+        count--;
+        moveByAmount(0, 1);
+        if (count <= 0) {
+          downTimer.cancel();
+        }
+      }
+    };
+    downTimer.scheduleAtFixedRate(downTask, 0L, 10L);
+
   }
 }

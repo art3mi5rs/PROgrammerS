@@ -26,7 +26,6 @@ public class Panel extends JPanel implements KeyListener {
   private Timer virusTimer;
   private Timer cloudsTimer;
   private Timer pointsTimer;
-  private Timer jumpTimer;
 
   private boolean collision;
   private int points;
@@ -45,7 +44,6 @@ public class Panel extends JPanel implements KeyListener {
     virusTimer = new Timer("virusTimer");
     cloudsTimer = new Timer("cloudsTimer");
     pointsTimer = new Timer("pointsTimer");
-    jumpTimer = new Timer("jumpTimer");
     setBackground(Color.CYAN);
 
   }
@@ -144,15 +142,6 @@ public class Panel extends JPanel implements KeyListener {
     }
     if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE) {
       mahaf.jump();
-      TimerTask jumpTask = new TimerTask() {
-        @Override
-        public void run() {
-          mahaf.comeToSurface();
-          repaint();
-        }
-      };
-      jumpTimer.schedule(jumpTask, 1000L);
-
     }
   }
 
@@ -171,13 +160,13 @@ public class Panel extends JPanel implements KeyListener {
   }
 
   public boolean checkCollision() {
-    if (mahaf.getX() + mahaf.getWidth() >= virus.getX() && mahaf.getX() <= virus.getX()
-        && mahaf.getY() + mahaf.getHeight() >= virus.getY() && mahaf.getY() <= virus.getY()
+    if (mahaf.getX() + mahaf.getWidth() - 30 >= virus.getX() && mahaf.getX() <= virus.getX()
+        && mahaf.getY() + mahaf.getHeight() + 30 >= virus.getY() && mahaf.getY() <= virus.getY()
 
         ||
 
-        virus.getX() + virus.getWidth() >= mahaf.getX() && virus.getX() <= mahaf.getX()
-            && mahaf.getY() + mahaf.getHeight() >= virus.getY() && mahaf.getY() <= virus.getY()) {
+        virus.getX() + virus.getWidth() - 30 >= mahaf.getX() && virus.getX() <= mahaf.getX()
+            && mahaf.getY() + mahaf.getHeight() + 30 >= virus.getY() && mahaf.getY() <= virus.getY()) {
 
       return true;
     }
