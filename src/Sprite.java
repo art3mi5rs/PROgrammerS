@@ -30,17 +30,19 @@ public class Sprite {
     isVisible = true;
   }
 
-  // Methods
+  //in charge of moving a sprite's location
   public void moveToLocation(int x, int y) {
     this.x = x;
     this.y = y;
   }
 
+  //Can move a sprite by a certain amount
   public void moveByAmount(int x, int y) {
     this.x += x;
     this.y += y;
   }
 
+  //Helps make sure than sprites respawn after going off of the window
   public void applyWindowLimits(int windowWidth, int windowHeight) {
     x = Math.min(x, windowWidth - this.width);
     y = Math.min(y, windowHeight - this.height);
@@ -48,12 +50,14 @@ public class Sprite {
     y = Math.max(0, y);
   }
 
+  //determines if a point is in the image
   public boolean isPointInImage(int mouseX, int mouseY) {
     if (mouseX >= x && mouseY >= y && mouseX <= x + width && mouseY <= y + height)
       return true;
     return false;
   }
 
+  //helps draw the sprites
   public void draw(Graphics g, ImageObserver io) {
     if (isVisible)
       g.drawImage(image, x, y, width, height, io);

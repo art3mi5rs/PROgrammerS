@@ -27,7 +27,7 @@ public class Clouds extends Sprite {
 			
 		}
 		
-		// METHODS
+		// Moves the clouds to the left
 		public void circularLeftShift() {
 		  Random rand = new Random();
 			if (curX >= 0) {
