@@ -20,7 +20,7 @@ public class Player extends Sprite {
 
   }
 
-  // Methods
+//Makes the player jump and adds music  
   public void jump() {
     Timer jumpTimer = new Timer("jumpTimer");
     Timer musicTimer = new Timer("musicTimer");
@@ -46,6 +46,7 @@ public class Player extends Sprite {
 
   }
 
+  //Returns the player to the surface
   public void comeToSurface() {
     Timer downTimer = new Timer("downTimer");
 

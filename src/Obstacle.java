@@ -18,7 +18,7 @@ public class Obstacle extends Sprite {
 			orgY = y;
 		}
 		
-		//Methods
+		//Moves the obstacle left
 		public void circularleftShift() {
 			if (curX >= 0) {
 				moveByAmount(-1, 0);

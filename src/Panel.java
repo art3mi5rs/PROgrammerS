@@ -15,6 +15,7 @@ import java.util.TimerTask;
 
 public class Panel extends JPanel implements KeyListener {
 
+  // Fields
   public static final int DRAWING_WIDTH = 800;
   public static final int DRAWING_HEIGHT = 600;
 
@@ -29,10 +30,10 @@ public class Panel extends JPanel implements KeyListener {
   private Timer cloudsTimer;
   private Timer pointsTimer;
 
-
   private boolean collision;
   private int points;
 
+  // Constructor
   public Panel() {
     super();
     collision = false;
@@ -53,8 +54,7 @@ public class Panel extends JPanel implements KeyListener {
 
   }
 
-
-  
+  // Runs all of the methods needed
   public void runWithTimer() {
     runVirus();
     runClouds(cloud, 55L);
@@ -64,6 +64,8 @@ public class Panel extends JPanel implements KeyListener {
 
   }
 
+  // This method is called in runWithTimer, and is in charge of running code
+  // related to the virus
   private void runVirus() {
     TimerTask virusTask = new TimerTask() {
       @Override
@@ -80,6 +82,8 @@ public class Panel extends JPanel implements KeyListener {
     virusTimer.scheduleAtFixedRate(virusTask, 1000L, 10L);
   }
 
+  // This method is called in runWithTimer, and is in charge of running code
+  // related to the clouds
   private void runClouds(Clouds c, long l) {
     TimerTask cloudsTask = new TimerTask() {
       @Override
@@ -92,6 +96,8 @@ public class Panel extends JPanel implements KeyListener {
     cloudsTimer.scheduleAtFixedRate(cloudsTask, 1000L, l);
   }
 
+  // This method is called in runWithTimer, and is in charge of running code
+  // related to the points system
   private void runPoints() {
     TimerTask virusTask = new TimerTask() {
       @Override
@@ -106,6 +112,7 @@ public class Panel extends JPanel implements KeyListener {
     pointsTimer.scheduleAtFixedRate(virusTask, 1000L, 1000L);
   }
 
+  // In charge of painting all components
   public void paintComponent(Graphics g) {
     super.paintComponent(g); // Call JPanel's paintComponent method to paint
     // the background
@@ -146,6 +153,7 @@ public class Panel extends JPanel implements KeyListener {
 
   }
 
+  // Methods of Key Listener, explains what happens when keys are pressed
   public void keyPressed(KeyEvent e) {
     if (collision) {
       return;
@@ -155,8 +163,9 @@ public class Panel extends JPanel implements KeyListener {
     }
   }
 
+  // Methods of Key Listener, explains what happens when keys are released
   public void keyReleased(KeyEvent e) {
-    //method needed by key listener
+    // method needed by key listener
   }
 
   public void keyTyped(KeyEvent e) {
@@ -185,11 +194,13 @@ public class Panel extends JPanel implements KeyListener {
 
   }
 
+  //used in order to add points
   public int pointIncrement(int n) {
     points += n;
     return points;
   }
 
+  //the main methods
   public static void main(String[] args) {
     JFrame w = new JFrame("PROgrammerS");
     w.setBounds(100, 100, 640, 480);
