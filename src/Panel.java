@@ -49,8 +49,8 @@ public class Panel extends JPanel implements KeyListener {
     mahaf = new Player(230, 480);
     virus = new Obstacle(780, 480);
     virusTimer = new Timer("virusTimer");
-    cloudsTimer = new Timer("cloudsTimer");
-    pointsTimer = new Timer("pointsTimer");
+    //cloudsTimer = new Timer("cloudsTimer");
+    //pointsTimer = new Timer("pointsTimer");
     setBackground(Color.CYAN);
 
   }
@@ -58,10 +58,10 @@ public class Panel extends JPanel implements KeyListener {
   // Runs all of the methods needed
   public void runWithTimer() {
     runVirus();
-    runClouds(cloud, 55L);
-    runClouds(cloud1, 42L);
-    runClouds(cloud2, 49L);
-    runPoints();
+    //runClouds(cloud, 55L);
+    //runClouds(cloud1, 42L);
+    //runClouds(cloud2, 49L);
+    //runPoints();
 
   }
 

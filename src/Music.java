@@ -1,7 +1,7 @@
 //Author: Mr. Burroughs
 //Date:05/12/2020
 //Rev:01
-//Notes: This class plays the jump music for the player 
+//Notes: This class contains the code to make music play in our game 
 	import java.io.File;
 	import java.io.IOException;
 	import javax.sound.sampled.AudioFormat;
