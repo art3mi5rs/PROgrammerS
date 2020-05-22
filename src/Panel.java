@@ -21,6 +21,7 @@ public class Panel extends JPanel implements KeyListener {
 
   private Player mahaf;
   private Obstacle virus;
+  private Mask mask;
   private Clouds cloud;
   private Clouds cloud1;
   private Clouds cloud2;

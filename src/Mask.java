@@ -1,8 +1,8 @@
 //Name: Shachaf Smith, Mana Nagampalli
 //Date:05/03/2020
 //Ver:1
-//Notes: This class is a subclass of sprite and extends all methods in sprite and conains the additional code for 
-//obstacle in game
+//Notes: This class is a subclass of sprite and extends all methods in sprite and contains the additional code for 
+//mask in game
 
 public class Mask extends Sprite {
 
@@ -18,7 +18,7 @@ public class Mask extends Sprite {
       orgY = y;
     }
     
-    //Moves the obstacle left
+    //Moves the mask left
     public void circularleftShift() {
       if (curX >= 0) {
         moveByAmount(-1, 0);
