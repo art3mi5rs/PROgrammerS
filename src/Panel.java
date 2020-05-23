@@ -64,6 +64,7 @@ public class Panel extends JPanel implements KeyListener {
 		backgroundTimer = new Timer("backgroundTimer");
 		background = new Music("background.wav");
 		gameOver = new Music("gameOver.wav");
+	
 
 		setBackground(Color.CYAN);
 
@@ -99,12 +100,13 @@ public class Panel extends JPanel implements KeyListener {
 		};
 		// the period was made 10 millisecinds to make the music appear
 		// like it is going on forever
-		backgroundTimer.scheduleAtFixedRate(musicTask, 0, 10);
+		backgroundTimer.scheduleAtFixedRate(musicTask, 2000, 10);
 	}
 
 	// This method is called in runWithTimer, and is in charge of running code
 	// related to the virus
 	private void runVirus() {
+		long virusIteration=10L;
 		TimerTask virusTask = new TimerTask() {
 			@Override
 			public void run() {
@@ -131,7 +133,13 @@ public class Panel extends JPanel implements KeyListener {
 			}
 
 		};
-		virusTimer.scheduleAtFixedRate(virusTask, 1000L, 10L);
+		
+		if(virusIteration>=0){
+			
+		virusTimer.scheduleAtFixedRate(virusTask, 1000L, 55L-virusIteration);
+		virusIteration=virusIteration+20L;
+		System.out.println(virusIteration);
+		}
 	}
 
 	// This method is called in runWithTimer, and is in charge of running code
