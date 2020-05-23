@@ -116,7 +116,6 @@ public class Panel extends JPanel implements KeyListener {
         if (checkCollision()) {
           if (hasMask) {
             virus.moveToLocation(740, 480);
-
             hasMask = false;
 
           } else {
@@ -140,7 +139,9 @@ public class Panel extends JPanel implements KeyListener {
       public void run() {
         mask.circularleftShift();
         if (checkMaskCollision()) {
+          maskMusic.play();
           hasMask = true;
+          
         }
         if (collision) {
           maskTimer.cancel();
