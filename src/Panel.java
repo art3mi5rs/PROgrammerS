@@ -31,8 +31,14 @@ public class Panel extends JPanel implements KeyListener {
 	private Timer pointsTimer;
 	private Timer backgroundTimer;
 	private Music background;
+
 	private Music gameOver;
 	private Music maskMusic;
+
+  private Music gameOver;
+  private Music maskMusic;
+
+
 	private boolean collision;
 	private boolean hasMask;
 	private int points;
@@ -61,8 +67,13 @@ public class Panel extends JPanel implements KeyListener {
 		pointsTimer = new Timer("pointsTimer");
 		backgroundTimer = new Timer("backgroundTimer");
 		background = new Music("background.wav");
+
 		gameOver = new Music("gameOver.wav");
 		maskMusic = new Music("maskMusic.wav");
+
+    gameOver = new Music("gameOver.wav");
+    maskMusic = new Music("maskMusic.wav");
+
 
 		setBackground(Color.CYAN);
 
@@ -119,6 +130,7 @@ public class Panel extends JPanel implements KeyListener {
 			public void run() {
 				mask.circularleftShift();
 				if (checkMaskCollision()) {
+				  maskMusic.play();
 					hasMask = true;
 				}
 				if (collision) {
@@ -287,4 +299,8 @@ public class Panel extends JPanel implements KeyListener {
 		panel.runWithTimer();
 	}
 
+
 }
+
+}
+
