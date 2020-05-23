@@ -170,11 +170,16 @@ public class Panel extends JPanel implements KeyListener {
     g.drawString(p, width - fm.stringWidth(p) - 10, 20);
 
     if (collision) {
-      g.setColor(Color.BLACK);
       g.setFont(new Font("SansSerif", Font.BOLD, 30));
       fm = g.getFontMetrics();
       String s = "You caught the virus! GAME OVER";
       g.drawString(s, width / 2 - fm.stringWidth(s) / 2, height / 2);
+    }
+    
+    if (hasMask) {
+      g.setFont(new Font("SansSerif", Font.BOLD, 12));
+      String m = "You have a mask!";
+      g.drawString(m, width - fm.stringWidth(p) - 120, 20);
     }
 
   }
@@ -207,12 +212,15 @@ public class Panel extends JPanel implements KeyListener {
   public boolean checkCollision() {
     if (mahaf.getX() + mahaf.getWidth() - 30 >= virus.getX() && mahaf.getX() <= virus.getX()
         && mahaf.getY() + mahaf.getHeight() - 30 >= virus.getY() && mahaf.getY() <= virus.getY()
-
+        && hasMask == false
+            
         ||
 
         virus.getX() + virus.getWidth() - 30 >= mahaf.getX() && virus.getX() <= mahaf.getX()
-            && mahaf.getY() + mahaf.getHeight() - 30 >= virus.getY() && mahaf.getY() <= virus.getY()) {
+            && mahaf.getY() + mahaf.getHeight() - 30 >= virus.getY() && mahaf.getY() <= virus.getY()
+            && hasMask == false) {
 
+      hasMask = false;
       return true;
     }
 
