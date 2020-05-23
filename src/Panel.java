@@ -109,7 +109,7 @@ public class Panel extends JPanel implements KeyListener {
   // related to the virus
   private void runVirus() {
     TimerTask virusTask = new TimerTask() {
-      
+
       @Override
       public void run() {
         virus.circularleftShift();
