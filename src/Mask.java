@@ -10,6 +10,7 @@ public class Mask extends Sprite {
     private int orgY;
     private double curX;
     
+    
     //Constructor
     public Mask(int x, int y) {
       super("mask.png",x,y,39,39);
