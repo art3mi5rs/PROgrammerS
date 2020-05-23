@@ -34,6 +34,7 @@ public class Panel extends JPanel implements KeyListener {
 
   private boolean collision;
   private boolean hasMask;
+  boolean prevMask;
   private int points;
 
   // Constructor
@@ -41,10 +42,12 @@ public class Panel extends JPanel implements KeyListener {
     super();
     collision = false;
     hasMask = false;
+    prevMask = false;
+
 
     mahaf = new Player(40, 480);
     virus = new Obstacle(740, 480);
-    mask = new Mask(660, 480);
+    mask = new Mask(780, 400);
     cloud = new Clouds(740, 20);
     cloud1 = new Clouds(900, 20);
     cloud2 = new Clouds(1060, 80);
@@ -79,10 +82,24 @@ public class Panel extends JPanel implements KeyListener {
       @Override
       public void run() {
         virus.circularleftShift();
-        collision = checkCollision();
-        if (collision) {
-          virusTimer.cancel();
+
+        if (!prevMask) {
+          hasMask = false;
         }
+        
+        if (checkCollision() == false && hasMask == true) {
+          prevMask = true;
+        }
+        
+        if (checkCollision()) {
+          if (prevMask == true) {
+          } else {
+          prevMask = false;
+          collision = false;
+          virusTimer.cancel();
+          }
+        }
+
         repaint();
       }
 
@@ -97,7 +114,9 @@ public class Panel extends JPanel implements KeyListener {
       @Override
       public void run() {
         mask.circularleftShift();
-        hasMask = checkMaskCollision();
+        if (checkMaskCollision()) {
+          hasMask = true;
+        }
         if (collision) {
           maskTimer.cancel();
         }
@@ -154,6 +173,9 @@ public class Panel extends JPanel implements KeyListener {
     g2.scale(ratioX, ratioY);
 
     virus.draw(g, this);
+    if (!hasMask) {
+      mask.draw(g, this);
+    }
     mahaf.draw(g, this);
     cloud.draw(g, this);
     cloud1.draw(g, this);
@@ -175,11 +197,11 @@ public class Panel extends JPanel implements KeyListener {
       String s = "You caught the virus! GAME OVER";
       g.drawString(s, width / 2 - fm.stringWidth(s) / 2, height / 2);
     }
-    
+
     if (hasMask) {
       g.setFont(new Font("SansSerif", Font.BOLD, 12));
       String m = "You have a mask!";
-      g.drawString(m, width - fm.stringWidth(p) - 120, 20);
+      g.drawString(m, width - fm.stringWidth(p) - 140, 20);
     }
 
   }
@@ -211,16 +233,11 @@ public class Panel extends JPanel implements KeyListener {
 
   public boolean checkCollision() {
     if (mahaf.getX() + mahaf.getWidth() - 30 >= virus.getX() && mahaf.getX() <= virus.getX()
-        && mahaf.getY() + mahaf.getHeight() - 30 >= virus.getY() && mahaf.getY() <= virus.getY()
-        && hasMask == false
-            
-        ||
+        && mahaf.getY() + mahaf.getHeight() - 30 >= virus.getY() && mahaf.getY() <= virus.getY() ||
 
         virus.getX() + virus.getWidth() - 30 >= mahaf.getX() && virus.getX() <= mahaf.getX()
-            && mahaf.getY() + mahaf.getHeight() - 30 >= virus.getY() && mahaf.getY() <= virus.getY()
-            && hasMask == false) {
+            && mahaf.getY() + mahaf.getHeight() - 30 >= virus.getY() && mahaf.getY() <= virus.getY()) {
 
-      hasMask = false;
       return true;
     }
 
