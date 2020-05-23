@@ -81,57 +81,58 @@ public class Panel extends JPanel implements KeyListener {
 		runBackgroundMusic();
 	}
 
-	// This method is called in runBackgroundMusic, and is in charge of running code
-		// related to the background music
-		private void runBackgroundMusic() {
-			TimerTask musicTask = new TimerTask() {
-				@Override
-				public void run() {
-					background.play();
-					collision = checkCollision();
-					if (collision) {
-						backgroundTimer.cancel();
-					}
-					repaint();
+	// This method is called in runBackgroundMusic, and is in charge of running
+	// code
+	// related to the background music
+	private void runBackgroundMusic() {
+		TimerTask musicTask = new TimerTask() {
+			@Override
+			public void run() {
+				background.play();
+				collision = checkCollision();
+				if (collision) {
+					backgroundTimer.cancel();
 				}
+				repaint();
+			}
 
-			};
-			//the period was made 10 millisecinds to make the music appear
-			//like it is going on forever
-			backgroundTimer.scheduleAtFixedRate(musicTask, 0, 10);
-		}
+		};
+		// the period was made 10 millisecinds to make the music appear
+		// like it is going on forever
+		backgroundTimer.scheduleAtFixedRate(musicTask, 0, 10);
+	}
 
 	// This method is called in runWithTimer, and is in charge of running code
 	// related to the virus
-  private void runVirus() {
-    TimerTask virusTask = new TimerTask() {
-      @Override
-      public void run() {
-        virus.circularleftShift();
+	private void runVirus() {
+		TimerTask virusTask = new TimerTask() {
+			@Override
+			public void run() {
+				virus.circularleftShift();
 
-        if (!prevMask) {
-          hasMask = false;
-        }
+				if (!prevMask) {
+					hasMask = false;
+				}
 
-        if (checkCollision() == false && hasMask == true) {
-          prevMask = true;
-        }
+				if (checkCollision() == false && hasMask == true) {
+					prevMask = true;
+				}
 
-        if (checkCollision()) {
-          if (prevMask == true) {
-          } else {
-          prevMask = false;
-          collision = false;
-          virusTimer.cancel();
-          }
-        }
+				if (checkCollision()) {
+					if (prevMask == true) {
+					} else {
+						prevMask = false;
+						collision = false;
+						virusTimer.cancel();
+					}
+				}
 
-        repaint();
-      }
+				repaint();
+			}
 
-    };
-    virusTimer.scheduleAtFixedRate(virusTask, 1000L, 10L);
-  }
+		};
+		virusTimer.scheduleAtFixedRate(virusTask, 1000L, 10L);
+	}
 
 	// This method is called in runWithTimer, and is in charge of running code
 	// related to the mask
