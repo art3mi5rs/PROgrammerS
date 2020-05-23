@@ -37,6 +37,7 @@ public class Panel extends JPanel implements KeyListener {
 
 	private boolean collision;
 	private boolean hasMask;
+	private boolean prevMask;
 	private int points;
 
 	// Constructor
@@ -44,6 +45,7 @@ public class Panel extends JPanel implements KeyListener {
 		super();
 		collision = false;
 		hasMask = false;
+		prevMask = false;
 
 		mahaf = new Player(40, 480);
 		virus = new Obstacle(740, 480);
