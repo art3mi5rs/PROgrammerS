@@ -29,15 +29,9 @@ public class Panel extends JPanel implements KeyListener {
 	private Timer maskTimer;
 	private Timer cloudsTimer;
 	private Timer pointsTimer;
-	private Timer backgroundTimer;
-	private Music background;
 
 	private Music gameOver;
 	private Music maskMusic;
-
-  private Music gameOver;
-  private Music maskMusic;
-
 
 	private boolean collision;
 	private boolean hasMask;
@@ -65,15 +59,13 @@ public class Panel extends JPanel implements KeyListener {
 		maskTimer = new Timer("maskTimer");
 		cloudsTimer = new Timer("cloudsTimer");
 		pointsTimer = new Timer("pointsTimer");
-		backgroundTimer = new Timer("backgroundTimer");
-		background = new Music("background.wav");
+		
 
 		gameOver = new Music("gameOver.wav");
 		maskMusic = new Music("maskMusic.wav");
 
-    gameOver = new Music("gameOver.wav");
-    maskMusic = new Music("maskMusic.wav");
-
+		gameOver = new Music("gameOver.wav");
+		maskMusic = new Music("maskMusic.wav");
 
 		setBackground(Color.CYAN);
 
@@ -98,9 +90,9 @@ public class Panel extends JPanel implements KeyListener {
 			@Override
 			public void run() {
 				virus.circularleftShift();
-				long virusIteration=1L;
-				speed = 10L/virusIteration;
-				
+				long virusIteration = 1L;
+				speed = 10L / virusIteration;
+
 				if (checkCollision()) {
 					if (hasMask) {
 						virus.moveToLocation(740, 480);
@@ -118,8 +110,8 @@ public class Panel extends JPanel implements KeyListener {
 			}
 
 		};
-		
-		virusTimer.scheduleAtFixedRate(virusTask, 1000L,speed);
+
+		virusTimer.scheduleAtFixedRate(virusTask, 1000L, speed);
 	}
 
 	// This method is called in runWithTimer, and is in charge of running code
@@ -130,7 +122,7 @@ public class Panel extends JPanel implements KeyListener {
 			public void run() {
 				mask.circularleftShift();
 				if (checkMaskCollision()) {
-				  maskMusic.play();
+					maskMusic.play();
 					hasMask = true;
 				}
 				if (collision) {
@@ -299,8 +291,4 @@ public class Panel extends JPanel implements KeyListener {
 		panel.runWithTimer();
 	}
 
-
 }
-
-}
-
