@@ -28,6 +28,7 @@ public class Panel extends JPanel implements KeyListener {
   private Clouds cloud3;
   private Ground grass;
   private Timer virusTimer;
+  private Timer maskTimer;
   private Timer cloudsTimer;
   private Timer pointsTimer;
 
@@ -43,6 +44,7 @@ public class Panel extends JPanel implements KeyListener {
 
     mahaf = new Player(40, 480);
     virus = new Obstacle(740, 480);
+    mask = new Mask(660, 480);
     cloud = new Clouds(740, 20);
     cloud1 = new Clouds(900, 20);
     cloud2 = new Clouds(1060, 80);
@@ -51,6 +53,7 @@ public class Panel extends JPanel implements KeyListener {
     mahaf = new Player(230, 480);
     virus = new Obstacle(780, 480);
     virusTimer = new Timer("virusTimer");
+    maskTimer = new Timer("maskTimer");
     cloudsTimer = new Timer("cloudsTimer");
     pointsTimer = new Timer("pointsTimer");
     setBackground(Color.CYAN);
@@ -60,14 +63,16 @@ public class Panel extends JPanel implements KeyListener {
   // Runs all of the methods needed
   public void runWithTimer() {
     runVirus();
+    runMask();
     runClouds(cloud, 55L);
     runClouds(cloud1, 42L);
     runClouds(cloud2, 49L);
+    runClouds(cloud3, 30L);
     runPoints();
 
   }
 
-  // This method is called in runWithTimer, and is in charge of running code
+//This method is called in runWithTimer, and is in charge of running code
   // related to the virus
   private void runVirus() {
     TimerTask virusTask = new TimerTask() {
@@ -83,6 +88,24 @@ public class Panel extends JPanel implements KeyListener {
 
     };
     virusTimer.scheduleAtFixedRate(virusTask, 1000L, 10L);
+  }
+
+//This method is called in runWithTimer, and is in charge of running code
+// related to the mask
+  private void runMask() {
+    TimerTask maskTask = new TimerTask() {
+      @Override
+      public void run() {
+        mask.circularleftShift();
+        hasMask = checkMaskCollision();
+        if (collision) {
+          maskTimer.cancel();
+        }
+        repaint();
+      }
+
+    };
+    maskTimer.scheduleAtFixedRate(maskTask, 3800L, 10L);
   }
 
   // This method is called in runWithTimer, and is in charge of running code
@@ -197,13 +220,29 @@ public class Panel extends JPanel implements KeyListener {
 
   }
 
-  //used in order to add points
+  public boolean checkMaskCollision() {
+    if (mahaf.getX() + mahaf.getWidth() - 30 >= mask.getX() && mahaf.getX() <= mask.getX()
+        && mahaf.getY() + mahaf.getHeight() - 30 >= mask.getY() && mahaf.getY() <= mask.getY()
+
+        ||
+
+        mask.getX() + mask.getWidth() - 30 >= mahaf.getX() && mask.getX() <= mahaf.getX()
+            && mahaf.getY() + mahaf.getHeight() - 30 >= mask.getY() && mahaf.getY() <= mask.getY()) {
+
+      return true;
+    }
+
+    return false;
+
+  }
+
+  // used in order to add points
   public int pointIncrement(int n) {
     points += n;
     return points;
   }
 
-  //the main methods
+  // the main methods
   public static void main(String[] args) {
     JFrame w = new JFrame("PROgrammerS");
     w.setBounds(100, 100, 640, 480);
