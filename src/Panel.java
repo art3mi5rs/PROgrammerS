@@ -31,6 +31,8 @@ public class Panel extends JPanel implements KeyListener {
   private Timer maskTimer;
   private Timer cloudsTimer;
   private Timer pointsTimer;
+  private Music background;
+  private Music gameOver;
 
   private boolean collision;
   private boolean hasMask;
@@ -56,6 +58,9 @@ public class Panel extends JPanel implements KeyListener {
     maskTimer = new Timer("maskTimer");
     cloudsTimer = new Timer("cloudsTimer");
     pointsTimer = new Timer("pointsTimer");
+    background = new Music("background.wav");
+    gameOver= new Music("gameOver.wav");
+    
     setBackground(Color.CYAN);
 
   }
@@ -69,6 +74,10 @@ public class Panel extends JPanel implements KeyListener {
     runClouds(cloud2, 49L);
     runClouds(cloud3, 30L);
     runPoints();
+    if (collision!=true){
+    background.play();
+    }
+    
 
   }
 
@@ -174,6 +183,7 @@ public class Panel extends JPanel implements KeyListener {
       fm = g.getFontMetrics();
       String s = "You caught the virus! GAME OVER";
       g.drawString(s, width / 2 - fm.stringWidth(s) / 2, height / 2);
+      gameOver.play();
     }
     
     if (hasMask) {
