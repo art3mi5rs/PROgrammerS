@@ -197,6 +197,7 @@ public class Panel extends JPanel implements KeyListener {
 		g2.scale(ratioX, ratioY);
 
 		virus.draw(g, this);
+		mask.draw(g, this);
 		mahaf.draw(g, this);
 		cloud.draw(g, this);
 		cloud1.draw(g, this);
