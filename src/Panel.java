@@ -29,17 +29,17 @@ public class Panel extends JPanel implements KeyListener {
   private Ground grass;
 
   private Timer virusTimer;
-  private Timer stoppedVirusTimer;
   private Timer maskTimer;
   private Timer cloudsTimer;
   private Timer pointsTimer;
   private Timer backgroundTimer;
   private Music background;
   private Music gameOver;
+  private Music maskMusic;
+
 
   private boolean collision;
   private boolean hasMask;
-  private boolean virusStopped;
   private int points;
 
   // Constructor
@@ -47,7 +47,6 @@ public class Panel extends JPanel implements KeyListener {
     super();
     collision = false;
     hasMask = false;
-    virusStopped = false;
 
     mahaf = new Player(40, 480);
     virus = new Obstacle(740, 480);
@@ -61,13 +60,13 @@ public class Panel extends JPanel implements KeyListener {
     virus = new Obstacle(780, 480);
 
     virusTimer = new Timer("virusTimer");
-    stoppedVirusTimer = new Timer("stoppedVirusTimer");
     maskTimer = new Timer("maskTimer");
     cloudsTimer = new Timer("cloudsTimer");
     pointsTimer = new Timer("pointsTimer");
     backgroundTimer = new Timer("backgroundTimer");
     background = new Music("background.wav");
     gameOver = new Music("gameOver.wav");
+    maskMusic = new Music ("maskMusic.wav");
 
     setBackground(Color.CYAN);
 
