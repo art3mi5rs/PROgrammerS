@@ -49,7 +49,7 @@ public class Panel extends JPanel implements KeyListener {
 
 		mahaf = new Player(40, 480);
 		virus = new Obstacle(740, 480);
-		mask = new Mask(660, 480);
+		mask = new Mask(780, 400);
 		cloud = new Clouds(740, 20);
 		cloud1 = new Clouds(900, 20);
 		cloud2 = new Clouds(1060, 80);
@@ -198,7 +198,9 @@ public class Panel extends JPanel implements KeyListener {
 		g2.scale(ratioX, ratioY);
 
 		virus.draw(g, this);
+		if (!hasMask){
 		mask.draw(g, this);
+		}
 		mahaf.draw(g, this);
 		cloud.draw(g, this);
 		cloud1.draw(g, this);
