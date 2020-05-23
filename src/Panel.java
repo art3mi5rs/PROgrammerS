@@ -35,10 +35,6 @@ public class Panel extends JPanel implements KeyListener {
 	private Music gameOver;
 	private Music maskMusic;
 
-  private Music gameOver;
-  private Music maskMusic;
-
-
 	private boolean collision;
 	private boolean hasMask;
 	private int points;
@@ -302,5 +298,5 @@ public class Panel extends JPanel implements KeyListener {
 
 }
 
-}
+
 
