@@ -17,10 +17,10 @@ public class Panel extends JPanel implements KeyListener {
 	// Fields
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
-	public static final int VIRUS_MODE_SLOW = 4;
+	public static final int VIRUS_MODE_SLOW = 3;
 	public static final int VIRUS_MODE_MEDIUM = 2;
 	public static final int VIRUS_MODE_HIGH = 1;
-	
+
 	private Player mahaf;
 	private Obstacle virus;
 	private Mask mask;
@@ -33,14 +33,16 @@ public class Panel extends JPanel implements KeyListener {
 	private Timer maskTimer;
 	private Timer cloudsTimer;
 	private Timer pointsTimer;
+	private Timer musicTimer;
 
 	private Music gameOver;
 	private Music maskMusic;
-
 	private boolean collision;
 	private boolean hasMask;
+	private boolean noGame;
 	private int points;
 	private int virusSkipCount;
+	
 
 	// Constructor
 	public Panel() {
@@ -48,6 +50,7 @@ public class Panel extends JPanel implements KeyListener {
 		collision = false;
 		hasMask = false;
 		virusSkipCount = 0;
+		noGame=false;
 
 		mahaf = new Player(40, 480);
 		virus = new Obstacle(740, 480);
@@ -80,6 +83,7 @@ public class Panel extends JPanel implements KeyListener {
 		runClouds(cloud2, 49L);
 		runClouds(cloud3, 30L);
 		runPoints();
+		runMusic();
 	}
 
 	// This method is called in runWithTimer, and is in charge of running code
@@ -90,14 +94,13 @@ public class Panel extends JPanel implements KeyListener {
 
 			public void run() {
 				int runsToSkip = VIRUS_MODE_HIGH;
-				
-				if (virusSkipCount < 60*200) {
+
+				if (virusSkipCount < 60 * 100) {
 					runsToSkip = VIRUS_MODE_SLOW;
-				}
-				else if (virusSkipCount < 90*200) {
+				} else if (virusSkipCount < 90 * 100) {
 					runsToSkip = VIRUS_MODE_MEDIUM;
 				}
-				
+
 				if (virusSkipCount % runsToSkip == 0) {
 					virus.circularleftShift();
 
@@ -110,13 +113,13 @@ public class Panel extends JPanel implements KeyListener {
 						} else {
 							collision = true;
 							virusTimer.cancel();
+							noGame=true;
 						}
 
 					}
 
 					repaint();
-					
-					System.out.println(virusSkipCount);
+
 
 				}
 				virusSkipCount++;
@@ -159,6 +162,22 @@ public class Panel extends JPanel implements KeyListener {
 
 		};
 		cloudsTimer.scheduleAtFixedRate(cloudsTask, 1000L, l);
+	}
+
+	private void runMusic() {
+		TimerTask musicTask = new TimerTask() {
+			@Override
+			public void run() {
+				
+				if (noGame) {
+					gameOver.play();
+					musicTimer.cancel();
+				}
+				
+			}
+
+		};
+		musicTimer.scheduleAtFixedRate(musicTask, 0, 1);
 	}
 
 	// This method is called in runWithTimer, and is in charge of running code
@@ -216,7 +235,7 @@ public class Panel extends JPanel implements KeyListener {
 			fm = g.getFontMetrics();
 			String s = "You caught the virus! GAME OVER";
 			g.drawString(s, width / 2 - fm.stringWidth(s) / 2, height / 2);
-			gameOver.play();
+
 		}
 
 		if (hasMask) {
