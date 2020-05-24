@@ -17,6 +17,10 @@ public class Panel extends JPanel implements KeyListener {
 	// Fields
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
+	public static final int VIRUS_MODE_SLOW = 4;
+	public static final int VIRUS_MODE_MEDIUM = 2;
+	public static final int VIRUS_MODE_HIGH = 1;
+	
 	private Player mahaf;
 	private Obstacle virus;
 	private Mask mask;
@@ -36,13 +40,14 @@ public class Panel extends JPanel implements KeyListener {
 	private boolean collision;
 	private boolean hasMask;
 	private int points;
-	private long speed;
+	private int virusSkipCount;
 
 	// Constructor
 	public Panel() {
 		super();
 		collision = false;
 		hasMask = false;
+		virusSkipCount = 0;
 
 		mahaf = new Player(40, 480);
 		virus = new Obstacle(740, 480);
@@ -59,13 +64,8 @@ public class Panel extends JPanel implements KeyListener {
 		maskTimer = new Timer("maskTimer");
 		cloudsTimer = new Timer("cloudsTimer");
 		pointsTimer = new Timer("pointsTimer");
-		
-
 		gameOver = new Music("gameOver.wav");
-		maskMusic = new Music("maskMusic.wav");
-
-		gameOver = new Music("gameOver.wav");
-		maskMusic = new Music("maskMusic.wav");
+		maskMusic = new Music("jump.wav");
 
 		setBackground(Color.CYAN);
 
@@ -85,33 +85,45 @@ public class Panel extends JPanel implements KeyListener {
 	// This method is called in runWithTimer, and is in charge of running code
 	// related to the virus
 	private void runVirus() {
+
 		TimerTask virusTask = new TimerTask() {
 
-			@Override
 			public void run() {
-				virus.circularleftShift();
-				long virusIteration = 1L;
-				speed = 10L / virusIteration;
-
-				if (checkCollision()) {
-					if (hasMask) {
-						virus.moveToLocation(740, 480);
-
-						hasMask = false;
-
-					} else {
-						collision = true;
-						virusTimer.cancel();
-					}
+				int runsToSkip = VIRUS_MODE_HIGH;
+				
+				if (virusSkipCount < 60*200) {
+					runsToSkip = VIRUS_MODE_SLOW;
 				}
+				else if (virusSkipCount < 90*200) {
+					runsToSkip = VIRUS_MODE_MEDIUM;
+				}
+				
+				if (virusSkipCount % runsToSkip == 0) {
+					virus.circularleftShift();
 
-				repaint();
-				virusIteration++;
+					if (checkCollision()) {
+						if (hasMask) {
+							virus.moveToLocation(740, 480);
+
+							hasMask = false;
+
+						} else {
+							collision = true;
+							virusTimer.cancel();
+						}
+
+					}
+
+					repaint();
+					
+					System.out.println(virusSkipCount);
+
+				}
+				virusSkipCount++;
 			}
-
 		};
 
-		virusTimer.scheduleAtFixedRate(virusTask, 1000L, speed);
+		virusTimer.schedule(virusTask, 0, 5L);
 	}
 
 	// This method is called in runWithTimer, and is in charge of running code
@@ -292,4 +304,3 @@ public class Panel extends JPanel implements KeyListener {
 	}
 
 }
-
