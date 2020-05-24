@@ -65,7 +65,7 @@ public class Panel extends JPanel implements KeyListener {
 		cloudsTimer = new Timer("cloudsTimer");
 		pointsTimer = new Timer("pointsTimer");
 		gameOver = new Music("gameOver.wav");
-		maskMusic = new Music("jump.wav");
+		maskMusic = new Music("maskMusic.wav");
 
 		setBackground(Color.CYAN);
 
