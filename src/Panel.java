@@ -52,7 +52,6 @@ public class Panel extends JPanel implements KeyListener {
 		virusSkipCount = 0;
 		noGame=false;
 
-		mahaf = new Player(40, 455);
 		virus = new Obstacle(740, 480);
 		mask = new Mask(780, 400);
 		cloud = new Clouds(740, 20);
@@ -60,7 +59,7 @@ public class Panel extends JPanel implements KeyListener {
 		cloud2 = new Clouds(1060, 80);
 		cloud3 = new Clouds(1200, 50);
 		grass = new Ground(0, 520);
-		mahaf = new Player(230, 480);
+		mahaf = new Player(230, 455);
 		virus = new Obstacle(780, 480);
 
 		virusTimer = new Timer("virusTimer");
