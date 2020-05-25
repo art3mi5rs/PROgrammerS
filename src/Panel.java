@@ -34,6 +34,7 @@ public class Panel extends JPanel implements KeyListener {
 	private Timer cloudsTimer;
 	private Timer pointsTimer;
 	private Timer musicTimer;
+	
 
 	private Music gameOver;
 	private Music maskMusic;
@@ -64,6 +65,7 @@ public class Panel extends JPanel implements KeyListener {
 		virus = new Obstacle(780, 480);
 
 		virusTimer = new Timer("virusTimer");
+		musicTimer = new Timer("musicTimer");
 		maskTimer = new Timer("maskTimer");
 		cloudsTimer = new Timer("cloudsTimer");
 		pointsTimer = new Timer("pointsTimer");
@@ -84,6 +86,7 @@ public class Panel extends JPanel implements KeyListener {
 		runClouds(cloud3, 30L);
 		runPoints();
 		runMusic();
+		
 	}
 
 	// This method is called in runWithTimer, and is in charge of running code
@@ -179,6 +182,7 @@ public class Panel extends JPanel implements KeyListener {
 		};
 		musicTimer.scheduleAtFixedRate(musicTask, 0, 1);
 	}
+	
 
 	// This method is called in runWithTimer, and is in charge of running code
 	// related to the points system
