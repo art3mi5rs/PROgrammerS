@@ -8,26 +8,23 @@ public class Obstacle extends Sprite {
 
 		private int orgX;
 		private int orgY;
-		private double curX;
 		
 		//Constructor
 		public Obstacle(int x, int y) {
 			super("virus.png",x,y,39,39);
 			orgX = x;
-			curX = x;
 			orgY = y;
 		}
 		
 		//Moves the obstacle left
 		public void circularleftShift() {
-			if (curX >= 0) {
+			if (getX() >= 0) {
 				moveByAmount(-1, 0);
-				curX -= 1;
 			}
 			else{
+	       System.out.println("circular rotation");
 				moveToLocation(orgX, orgY);
-				curX = orgX;
-			}
+				}
 		}
 }
  
