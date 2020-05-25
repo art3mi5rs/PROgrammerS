@@ -11,42 +11,45 @@ public class Player extends Sprite {
 
   int count;
   private Music jump;
+  int initialHeight;
 
   // Constructor
   public Player(int x, int y) {
-    super("running.png", x, y - 25, 80, 100);
+    super("running.png", x, y, 80, 100);
     count = 0;
     jump = new Music("jump.wav");
+    initialHeight = y;
 
   }
 
 //Makes the player jump and adds music  
   public void jump() {
-    Timer jumpTimer = new Timer("jumpTimer");
-    Timer musicTimer = new Timer("musicTimer");
-    
-    TimerTask musicTask = new TimerTask() {
-      public void run() {
-        jump.play();
-      }
-    };
-    musicTimer.schedule(musicTask, 0L);
+    if (getY() == initialHeight) {
+      Timer jumpTimer = new Timer("jumpTimer");
+      Timer musicTimer = new Timer("musicTimer");
 
-    TimerTask jumpTask = new TimerTask() {
-      public void run() {
-        count++;
-        moveByAmount(0, -1);
-        if (count >= 150) {
-          jumpTimer.cancel();
-          comeToSurface();
+      TimerTask musicTask = new TimerTask() {
+        public void run() {
+          jump.play();
         }
-      }
-    };
-    jumpTimer.scheduleAtFixedRate(jumpTask, 0L, 10L);
+      };
+      musicTimer.schedule(musicTask, 0L);
 
+      TimerTask jumpTask = new TimerTask() {
+        public void run() {
+          count++;
+          moveByAmount(0, -1);
+          if (count >= 150) {
+            jumpTimer.cancel();
+            comeToSurface();
+          }
+        }
+      };
+      jumpTimer.scheduleAtFixedRate(jumpTask, 0L, 10L);
+    }
   }
 
-  //Returns the player to the surface
+  // Returns the player to the surface
   public void comeToSurface() {
     Timer downTimer = new Timer("downTimer");
 
