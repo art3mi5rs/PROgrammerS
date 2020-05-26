@@ -107,7 +107,6 @@ public class Panel extends JPanel implements KeyListener {
 
           if (checkCollision()) {
             if (hasMask) {
-              System.out.println("return no mask");
               virus.moveToLocation(740, 480);
 
               hasMask = false;

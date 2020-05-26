@@ -22,7 +22,6 @@ public class Obstacle extends Sprite {
 				moveByAmount(-1, 0);
 			}
 			else{
-	       System.out.println("circular rotation");
 				moveToLocation(orgX, orgY);
 				}
 		}
